@@ -1,0 +1,37 @@
+{
+  "name": "autospace",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "apps/*",
+      "libs/*"
+    ],
+    "nohoist": [
+      "**/@nestjs",
+      "**/@nestjs/**"
+    ]
+  },
+  "scripts": {
+    "format": "prettier '{apps,libs}/**/*.{ts,tsx,js,json}' --ignore-path .gitignore",
+    "format:check": "bun format --check",
+    "format:write": "bun format --write",
+    "lint": "bun nx run-many -t lint",
+    "lints": "npm --parallel -r run lint",
+    "tsc": "npm nx run-many -t tsc",
+    "build": "bun nx run-many -t build",
+    "validate": "bun format:write && bun tsc && bun lint && bun build",
+    "prepare": "husky install",
+    "cloc": "npx cloc --exclude-dir=node_modules,dist,build,yarn.lock,package.json,generated.tsx,.next,.nx ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "husky": "^8.0.0",
+    "nx": "18.3.4",
+    "prettier": "^3.3.3",
+    "typescript": "^5.4.3"
+  }
+}
